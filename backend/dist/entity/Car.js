@@ -9,40 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Car = void 0;
 const typeorm_1 = require("typeorm");
-let User = class User {
+let Car = class Car {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Car.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "Login", void 0);
+], Car.prototype, "Model", void 0);
+__decorate([
+    (0, typeorm_1.Column)('date'),
+    __metadata("design:type", Date)
+], Car.prototype, "MakeYear", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "Email", void 0);
+], Car.prototype, "Colour", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "Password", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Boolean)
-], User.prototype, "isActive", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", String)
-], User.prototype, "userHash", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], User.prototype, "Token", void 0);
-User = __decorate([
+], Car.prototype, "FuelType", void 0);
+Car = __decorate([
     (0, typeorm_1.Entity)()
-], User);
-exports.User = User;
-//# sourceMappingURL=User.js.map
+], Car);
+exports.Car = Car;
+//# sourceMappingURL=Car.js.map

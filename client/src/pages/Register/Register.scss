@@ -1,0 +1,17 @@
+@import "../../assets/_variables";
+.register-container {
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+        margin: 0.5rem;
+    }
+    a {
+        color: $charcoal;
+        text-align: center;
+    }
+    button {
+        margin: 1rem;
+    }
+}

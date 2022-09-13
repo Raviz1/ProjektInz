@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:front": "cd ./client && npm start",
     "start:backend": "cd ./backend && concurrently \"npm run dev\" \"npm run database\"",
-    "start:all": "concurrently \"npm run start:front\" \"npm run start:backend\""
+    "start:all": "concurrently \"npm run start:front\" \"npm run start:backend\" --kill-others"
   },
   "keywords": [],
   "author": "",

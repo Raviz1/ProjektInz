@@ -1,0 +1,14 @@
+@import "../../assets/_variables";
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    color: $white;
+    font-size: 3rem;
+    border: 1px solid $white;
+}
+
+a {
+    color: $white;
+    text-decoration: none;
+}
