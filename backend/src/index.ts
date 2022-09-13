@@ -8,6 +8,10 @@ dotenv.config()
 import { AppDataSource } from "./data-source"
 import { User } from "./entity/User"
 import cors from "cors";
+import { Car } from "./entity/Car";
+import { Image } from "./entity/Image";
+import { userInfo } from "os";
+
 
 const app: Express = express();
 app.use(express.static('activate'))
@@ -16,17 +20,37 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(cors())
+app.use(router)
 
 
 
 AppDataSource.initialize().then(async () => {
 
-    app.use(router)
     const path = require('path')
-    app.use('/activate/', express.static(path.join(__dirname, 'activate')))
-    console.log(path.join(__dirname, 'activate'))
-    app.listen(3005, () => {
-        console.log(`⚡️[server]: Server is running at http://localhost:${3005}`);
-    });
+    app.use('/carImages/', express.static(path.join(__dirname, 'carImages')))
+    // console.log(path.join(__dirname, 'activate'))
+    // !!! DEFAULT CARS
+
+    const car = new Car()
+    car.Colour = "blue"
+    car.FuelType = "disel"
+    car.MakeYear = new Date(1997)
+    car.Model = "Volvo v50"
+
+    const image1 = new Image()
+    image1.Title = "1"
+    image1.Url = "http://localhost:3005/carImages/1/1.jpg"
+    await AppDataSource.manager.save(image1)
+    const image2 = new Image()
+    image2.Title = "2"
+    image2.Url = "http://localhost:3005/carImages/1/2.jpeg"
+    await AppDataSource.manager.save(image2)
+    car.Images = [image1,image2]
+    await AppDataSource.manager.save(car)
+
 
 }).catch(error => console.log(error))
+
+app.listen(3005, () => {
+    console.log(`⚡️[server]: Server is running at http://localhost:${3005}`);
+});

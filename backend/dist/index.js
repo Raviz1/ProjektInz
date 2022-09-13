@@ -41,6 +41,8 @@ const dotenv = __importStar(require("dotenv")); // see https://github.com/motdot
 dotenv.config();
 const data_source_1 = require("./data-source");
 const cors_1 = __importDefault(require("cors"));
+const Car_1 = require("./entity/Car");
+const Image_1 = require("./entity/Image");
 const app = (0, express_1.default)();
 app.use(express_1.default.static('activate'));
 app.use(express_1.default.json());
@@ -48,13 +50,29 @@ app.use(express_1.default.urlencoded({
     extended: true
 }));
 app.use((0, cors_1.default)());
+app.use(Router_1.default);
 data_source_1.AppDataSource.initialize().then(() => __awaiter(void 0, void 0, void 0, function* () {
-    app.use(Router_1.default);
     const path = require('path');
-    app.use('/activate/', express_1.default.static(path.join(__dirname, 'activate')));
-    console.log(path.join(__dirname, 'activate'));
-    app.listen(3005, () => {
-        console.log(`⚡️[server]: Server is running at http://localhost:${3005}`);
-    });
+    app.use('/carImages/', express_1.default.static(path.join(__dirname, 'carImages')));
+    // console.log(path.join(__dirname, 'activate'))
+    // !!! DEFAULT CARS
+    const car = new Car_1.Car();
+    car.Colour = "blue";
+    car.FuelType = "disel";
+    car.MakeYear = new Date(1997);
+    car.Model = "Volvo v50";
+    const image1 = new Image_1.Image();
+    image1.Title = "1";
+    image1.Url = "http://localhost:3005/carImages/1/1.jpg";
+    yield data_source_1.AppDataSource.manager.save(image1);
+    const image2 = new Image_1.Image();
+    image2.Title = "2";
+    image2.Url = "http://localhost:3005/carImages/1/2.jpeg";
+    yield data_source_1.AppDataSource.manager.save(image2);
+    car.Images = [image1, image2];
+    yield data_source_1.AppDataSource.manager.save(car);
 })).catch(error => console.log(error));
+app.listen(3005, () => {
+    console.log(`⚡️[server]: Server is running at http://localhost:${3005}`);
+});
 //# sourceMappingURL=index.js.map

@@ -1,4 +1,5 @@
 import express from "express";
+import CarRouter from "./CarRouter/CarRouter";
 import UserRouter from "./UserRouter/UserRouter";
 
 const router = express.Router();
@@ -9,6 +10,7 @@ const router = express.Router();
 // })
 
 router.use('/user', UserRouter)
+router.use('/cars', CarRouter)
 router.use(express.static('activate'))
 
 

@@ -9,37 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Car = void 0;
+exports.Image = void 0;
 const typeorm_1 = require("typeorm");
-const Image_1 = require("./Image");
-let Car = class Car {
+const Car_1 = require("./Car");
+let Image = class Image {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Car.prototype, "id", void 0);
+], Image.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Car.prototype, "Model", void 0);
-__decorate([
-    (0, typeorm_1.Column)('date'),
-    __metadata("design:type", Date)
-], Car.prototype, "MakeYear", void 0);
+], Image.prototype, "Title", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Car.prototype, "Colour", void 0);
+], Image.prototype, "Url", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Car.prototype, "FuelType", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => Image_1.Image, (image) => image.car),
-    __metadata("design:type", Array)
-], Car.prototype, "Images", void 0);
-Car = __decorate([
+    (0, typeorm_1.ManyToOne)(() => Car_1.Car, (car) => car.Images),
+    __metadata("design:type", Car_1.Car)
+], Image.prototype, "car", void 0);
+Image = __decorate([
     (0, typeorm_1.Entity)()
-], Car);
-exports.Car = Car;
-//# sourceMappingURL=Car.js.map
+], Image);
+exports.Image = Image;
+//# sourceMappingURL=Image.js.map

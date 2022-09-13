@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
+import { Image } from "./Image"
 
 @Entity()
 export class Car {
@@ -12,5 +13,6 @@ export class Car {
     Colour: string
     @Column()
     FuelType: string
-
+    @OneToMany(() => Image, (image) => image.car)
+    Images: Image[]
 }

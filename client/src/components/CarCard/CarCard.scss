@@ -1,0 +1,23 @@
+@import "../../assets/_variables";
+.carCard-container {
+    display: flex;
+    flex-direction: column;
+    color: $white;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $white;
+    & > * {
+        margin: 0.3rem;
+    }
+    a {
+        color: $burnt-sienna;
+        border: 1px solid $sandy-brown;
+        padding: 0.4rem;
+    }
+    img {
+        // flex: 1;
+        aspect-ratio: 16/9;
+        height: 4rem;
+        width: 8rem;
+    }
+}
