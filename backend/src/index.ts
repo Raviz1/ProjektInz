@@ -53,12 +53,12 @@ AppDataSource.initialize().then(async () => {
     image2.Url = "http://localhost:3005/carImages/1/2.jpeg"
     await AppDataSource.manager.save(image2)
     // terminy
-    const termin1 = new Terminy();
-    termin1.DataStart = new Date("2022-09-14")
-    termin1.DataZwrotu = new Date("2022-09-16")
-    await AppDataSource.manager.save(termin1)
+    // const termin1 = new Terminy();
+    // termin1.DataStart = new Date("2022-09-14")
+    // termin1.DataZwrotu = new Date("2022-09-16")
+    // await AppDataSource.manager.save(termin1)
     car.Images = [image1, image2]
-    car.Lents = [termin1]
+    // car.Lents = [termin1]
     await AppDataSource.manager.save(car)
 
 

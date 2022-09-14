@@ -43,7 +43,6 @@ const data_source_1 = require("./data-source");
 const cors_1 = __importDefault(require("cors"));
 const Car_1 = require("./entity/Car");
 const Image_1 = require("./entity/Image");
-const Terminy_1 = require("./entity/Terminy");
 const Cenniki_1 = require("./entity/Cenniki");
 const app = (0, express_1.default)();
 app.use(express_1.default.static('activate'));
@@ -77,12 +76,12 @@ data_source_1.AppDataSource.initialize().then(() => __awaiter(void 0, void 0, vo
     image2.Url = "http://localhost:3005/carImages/1/2.jpeg";
     yield data_source_1.AppDataSource.manager.save(image2);
     // terminy
-    const termin1 = new Terminy_1.Terminy();
-    termin1.DataStart = new Date("2022-09-14");
-    termin1.DataZwrotu = new Date("2022-09-16");
-    yield data_source_1.AppDataSource.manager.save(termin1);
+    // const termin1 = new Terminy();
+    // termin1.DataStart = new Date("2022-09-14")
+    // termin1.DataZwrotu = new Date("2022-09-16")
+    // await AppDataSource.manager.save(termin1)
     car.Images = [image1, image2];
-    car.Lents = [termin1];
+    // car.Lents = [termin1]
     yield data_source_1.AppDataSource.manager.save(car);
 })).catch(error => console.log(error));
 app.listen(3005, () => {
