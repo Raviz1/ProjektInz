@@ -83,6 +83,7 @@ UserController.loginUser = (req, res) => __awaiter(void 0, void 0, void 0, funct
             const token = jsonwebtoken_1.default.sign({ email }, process.env.TOKEN_KEY, {
                 expiresIn: "2h",
             });
+            user.Token = token;
             // save user token
             yield userRepository.save(user);
             // user

@@ -89,7 +89,7 @@ export class UserController {
                         expiresIn: "2h",
                     }
                 );
-
+                user.Token = token
                 // save user token
                 await userRepository.save(user)
 
