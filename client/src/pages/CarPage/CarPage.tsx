@@ -1,8 +1,9 @@
 
 
 import axios from "axios";
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../../App";
 import { datesArray } from "../../assets/DateDiff";
 import { ICarInterface } from "../../assets/Interfaces/CarInterface";
 import { Button } from "../../components/Button/Button";
@@ -15,6 +16,8 @@ import { Gallery } from "../../components/Gallery/Gallery";
 import './CarPage.scss'
 export const CarPage: FC = () => {
     const { id } = useParams();
+    const userCtx = useContext(UserContext)
+
     useEffect(() => {
         axios.get(`http://localhost:3005/cars/${id}`)
             .then((response) => {
@@ -31,7 +34,7 @@ export const CarPage: FC = () => {
         setReservation(datesArray(daty[0], daty[1]))
     }
     const reserve = () => {
-
+        if(!userCtx.context) alert("zaloguj się by wynająć samochód")
     }
 
     const [car, setCar] = useState<null | ICarInterface>()
