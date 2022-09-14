@@ -31,10 +31,26 @@ export const CarPage: FC = () => {
     }, [])
 
     const change = (daty: Date[]) => {
-        setReservation(datesArray(daty[0], daty[1]))
+        setReservation([daty[0], daty[1]])
     }
     const reserve = () => {
-        if(!userCtx.context) alert("zaloguj się by wynająć samochód")
+        if (!userCtx.context) alert("zaloguj się by wynająć samochód")
+        // logika zamwiania
+        console.log(reservation)
+        axios.post("http://localhost:3005/reservation/reserve", {
+            dates: reservation,
+            carId: car?.id,
+            userId: userCtx.context?.id
+        })
+            .then((response) => {
+                console.log(response)
+                alert("Samochód został zarezerwowany, pojawił się w Twoich zamówieniach")
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
+
     }
 
     const [car, setCar] = useState<null | ICarInterface>()

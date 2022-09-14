@@ -47,7 +47,6 @@ export class UserController {
                     expiresIn: "2h",
                 }
             );
-            console.log(token)
             user.Token = token
             userRepository.save(user)
 

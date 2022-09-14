@@ -53,7 +53,6 @@ UserController.createUser = (req, res) => __awaiter(void 0, void 0, void 0, func
         const token = jsonwebtoken_1.default.sign({ email: email }, process.env.TOKEN_KEY, {
             expiresIn: "2h",
         });
-        console.log(token);
         user.Token = token;
         userRepository.save(user);
         // console.log(`http://localhost:3005/activate/${hash}`)

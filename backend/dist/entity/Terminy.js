@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Terminy = void 0;
 const typeorm_1 = require("typeorm");
 const Car_1 = require("./Car");
+const User_1 = require("./User");
 let Terminy = class Terminy {
 };
 __decorate([
@@ -30,6 +31,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => Car_1.Car, (car) => car.Lents),
     __metadata("design:type", Car_1.Car)
 ], Terminy.prototype, "car", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => User_1.User, (user) => user.id),
+    __metadata("design:type", User_1.User)
+], Terminy.prototype, "user", void 0);
 Terminy = __decorate([
     (0, typeorm_1.Entity)()
 ], Terminy);

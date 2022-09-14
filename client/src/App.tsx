@@ -9,6 +9,7 @@ import { CarPage } from './pages/CarPage/CarPage';
 import { Login } from './pages/Login/Login';
 import { MainPage } from './pages/MainPage/MainPage';
 import { Register } from './pages/Register/Register';
+import { Zamowienia } from './pages/Zamowienia/Zamowienia';
 
 interface IUser {
   id: number | null,
@@ -38,7 +39,6 @@ function App() {
     if (user) {
       setContext(JSON.parse(user))
     }
-    // axios.get('http://localhost:3005/user/test').then((response)=> console.log(response))
 
   }, [])
   return (
@@ -50,6 +50,9 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="/car/:id" element={<CarPage />} />
+          <Route path="/orders" element={<Zamowienia title='Lista Zamówień' url='http://localhost:3005/reservation/all' />} />
+          <Route path="/history" element={<Zamowienia title='Historia Zamówień' url='http://localhost:3005/reservation/allHistory' />} />
+
         </Routes>
       </UserContext.Provider>
     </div>

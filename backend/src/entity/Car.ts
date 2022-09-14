@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn } from "typeorm"
+import { Cennik } from "./Cenniki"
 import { Image } from "./Image"
 import { Terminy } from "./Terminy"
 
@@ -18,4 +19,7 @@ export class Car {
     Images: Image[]
     @OneToMany(() => Terminy, (terminy) => terminy.car)
     Lents: Terminy[]
+    @OneToOne(() => Cennik)
+    @JoinColumn()
+    Cennik: Cennik
 }

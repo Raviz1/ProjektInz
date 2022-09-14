@@ -44,6 +44,7 @@ const cors_1 = __importDefault(require("cors"));
 const Car_1 = require("./entity/Car");
 const Image_1 = require("./entity/Image");
 const Terminy_1 = require("./entity/Terminy");
+const Cenniki_1 = require("./entity/Cenniki");
 const app = (0, express_1.default)();
 app.use(express_1.default.static('activate'));
 app.use(express_1.default.json());
@@ -57,11 +58,16 @@ data_source_1.AppDataSource.initialize().then(() => __awaiter(void 0, void 0, vo
     app.use('/carImages/', express_1.default.static(path.join(__dirname, 'carImages')));
     // console.log(path.join(__dirname, 'activate'))
     // !!! DEFAULT CARS
+    const cennik = new Cenniki_1.Cennik();
+    cennik.Cena = 200;
     const car = new Car_1.Car();
     car.Colour = "blue";
     car.FuelType = "disel";
     car.MakeYear = new Date(1997);
+    car.Cennik = cennik;
     car.Model = "Volvo v50";
+    //cennik
+    yield data_source_1.AppDataSource.manager.save(cennik);
     const image1 = new Image_1.Image();
     image1.Title = "1";
     image1.Url = "http://localhost:3005/carImages/1/1.jpg";

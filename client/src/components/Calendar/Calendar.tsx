@@ -13,14 +13,15 @@ interface ICalendarProps {
 
 export const CalendarBox: FC<ICalendarProps> = ({ Lents, change }) => {
     const [value, setValue] = useState(new Date());
-    const [disabled, setDisabled] = useState<Array<Array<Date>> | null>(null)
+    const [disabled, setDisabled] = useState<Array<Date> | null>(null)
     const disabledTiles = () => {
         let arr: any[] = []
         Lents?.forEach((element: ITerminy) => {
             let daty = datesArray(new Date(element.DataStart), new Date(element.DataZwrotu))
             arr.push(daty)
         })
-        setDisabled(arr)
+    
+        setDisabled(arr.flat())
     }
     const onChange = (e: any) => {
         change(e)
@@ -34,7 +35,7 @@ export const CalendarBox: FC<ICalendarProps> = ({ Lents, change }) => {
                 returnValue={"range"}
                 tileDisabled={({ date, view }) =>
                     (view === 'month') && // Block day tiles only
-                    disabled[0].some(disabledDate => {
+                    disabled.some(disabledDate => {
                         return date.getFullYear() === disabledDate.getFullYear() &&
                             date.getMonth() === disabledDate.getMonth() &&
                             date.getDate() === disabledDate.getDate()

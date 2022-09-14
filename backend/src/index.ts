@@ -12,6 +12,7 @@ import { Car } from "./entity/Car";
 import { Image } from "./entity/Image";
 import { userInfo } from "os";
 import { Terminy } from "./entity/Terminy";
+import { Cennik } from "./entity/Cenniki";
 
 
 const app: Express = express();
@@ -32,12 +33,17 @@ AppDataSource.initialize().then(async () => {
     // console.log(path.join(__dirname, 'activate'))
     // !!! DEFAULT CARS
 
+    const cennik = new Cennik();
+    cennik.Cena = 200
+
     const car = new Car()
     car.Colour = "blue"
     car.FuelType = "disel"
     car.MakeYear = new Date(1997)
+    car.Cennik = cennik
     car.Model = "Volvo v50"
-
+    //cennik
+    await AppDataSource.manager.save(cennik)
     const image1 = new Image()
     image1.Title = "1"
     image1.Url = "http://localhost:3005/carImages/1/1.jpg"
@@ -54,6 +60,8 @@ AppDataSource.initialize().then(async () => {
     car.Images = [image1, image2]
     car.Lents = [termin1]
     await AppDataSource.manager.save(car)
+
+
 
 
 }).catch(error => console.log(error))

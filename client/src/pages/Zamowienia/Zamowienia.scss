@@ -1,0 +1,14 @@
+@import "../../assets/_variables";
+.zamowienia-container {
+    display: flex;
+    color: $white;
+    flex-direction: column;
+    padding: 1rem;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+}
+.zamowienia{
+    display:flex;
+    justify-content: center;
+}

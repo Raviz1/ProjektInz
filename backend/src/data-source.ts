@@ -4,6 +4,7 @@ import { Car } from "./entity/Car"
 import { User } from "./entity/User"
 import { Image } from "./entity/Image"
 import { Terminy } from "./entity/Terminy"
+import { Cennik } from "./entity/Cenniki"
 
 
 
@@ -16,7 +17,7 @@ export const AppDataSource = new DataSource({
     database: "db",
     synchronize: true,
     logging: false,
-    entities: [User, Car, Image, Terminy],
+    entities: [User, Car, Image, Terminy, Cennik],
     migrations: [],
     subscribers: [],
 })
