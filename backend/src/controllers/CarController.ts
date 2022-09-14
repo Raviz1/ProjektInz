@@ -31,7 +31,8 @@ export class CarController {
             console.log(req.params.id)
             const car = await carRepository.find({
                 relations: {
-                    Images: true
+                    Images: true,
+                    Lents: true,
                 },
                 where: {
                     id: +id

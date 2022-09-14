@@ -3,7 +3,10 @@
 import axios from "axios";
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { datesArray } from "../../assets/DateDiff";
 import { ICarInterface } from "../../assets/Interfaces/CarInterface";
+import { Button } from "../../components/Button/Button";
+import { CalendarBox } from "../../components/Calendar/Calendar";
 import { Gallery } from "../../components/Gallery/Gallery";
 
 
@@ -16,21 +19,39 @@ export const CarPage: FC = () => {
         axios.get(`http://localhost:3005/cars/${id}`)
             .then((response) => {
                 setCar(response.data.car[0])
+                console.log(response.data.car[0])
+
             })
             .catch((error) => {
                 console.error(error)
             })
     }, [])
 
+    const change = (daty: Date[]) => {
+        setReservation(datesArray(daty[0], daty[1]))
+    }
+    const reserve = () => {
+
+    }
+
     const [car, setCar] = useState<null | ICarInterface>()
+    const [reservation, setReservation] = useState<Array<Date> | null>(null)
+    //test
+    useEffect(() => {
+
+    }, [reservation])
+
     return <div className="carPage-container">
         {
-            car && <div>
+            car &&
+            <div>
                 <Gallery images={car.Images} />
                 <p>Model :{car.Model}</p>
                 <p>Rok Produkcji:{car.MakeYear.toString()}</p>
                 <p>Silnik: {car.FuelType}</p>
                 <p>Kolor: {car.Colour}</p>
+                <CalendarBox Lents={car.Lents} change={change} />
+                <Button onClick={reserve} text={"Zarezerwuj"}/>
             </div>
         }
     </div>

@@ -40,7 +40,8 @@ CarController.getById = (req, res) => __awaiter(void 0, void 0, void 0, function
         console.log(req.params.id);
         const car = yield carRepository.find({
             relations: {
-                Images: true
+                Images: true,
+                Lents: true,
             },
             where: {
                 id: +id

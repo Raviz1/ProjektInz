@@ -6,6 +6,7 @@ const typeorm_1 = require("typeorm");
 const Car_1 = require("./entity/Car");
 const User_1 = require("./entity/User");
 const Image_1 = require("./entity/Image");
+const Terminy_1 = require("./entity/Terminy");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "mysql",
     host: "localhost",
@@ -15,7 +16,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     database: "db",
     synchronize: true,
     logging: false,
-    entities: [User_1.User, Car_1.Car, Image_1.Image],
+    entities: [User_1.User, Car_1.Car, Image_1.Image, Terminy_1.Terminy],
     migrations: [],
     subscribers: [],
 });
