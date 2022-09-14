@@ -41,17 +41,22 @@ export const CarPage: FC = () => {
 
     }, [reservation])
 
-    return <div className="carPage-container">
+    return <div style={{ flex: 1 }}>
         {
             car &&
-            <div>
+            <div className="carPage-container">
                 <Gallery images={car.Images} />
-                <p>Model :{car.Model}</p>
-                <p>Rok Produkcji:{car.MakeYear.toString()}</p>
-                <p>Silnik: {car.FuelType}</p>
-                <p>Kolor: {car.Colour}</p>
-                <CalendarBox Lents={car.Lents} change={change} />
-                <Button onClick={reserve} text={"Zarezerwuj"}/>
+                <div>
+                    <p>Model :{car.Model}</p>
+                    <p>Rok Produkcji:{car.MakeYear.toString()}</p>
+                    <p>Silnik: {car.FuelType}</p>
+                    <p>Kolor: {car.Colour}</p>
+                </div>
+                <div>
+                    <CalendarBox Lents={car.Lents} change={change} />
+                    <Button onClick={reserve} text={"Zarezerwuj"} />
+                </div>
+
             </div>
         }
     </div>

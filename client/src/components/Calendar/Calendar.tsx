@@ -41,7 +41,7 @@ export const CalendarBox: FC<ICalendarProps> = ({ Lents, change }) => {
                     }
 
                     )}
-                onChange={onChange} value={value} />
+                onChange={(e: any) => { onChange(e); setValue(e) }} value={value} />
         }
     </div>
 }
